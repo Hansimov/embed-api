@@ -9,7 +9,8 @@ from numpy.linalg import norm
 from configs.envs import ENVS
 from configs.constants import AVAILABLE_MODELS
 
-os.environ["HF_ENDPOINT"] = ENVS["HF_ENDPOINT"]
+if ENVS["HF_ENDPOINT"]:
+    os.environ["HF_ENDPOINT"] = ENVS["HF_ENDPOINT"]
 os.environ["HF_TOKEN"] = ENVS["HF_TOKEN"]
 
 
