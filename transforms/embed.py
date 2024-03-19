@@ -33,7 +33,8 @@ class JinaAIOnnxEmbedder:
         self.load_model()
 
     def download_model(self):
-        self.onnx_folder = Path(__file__).parent
+        self.onnx_folder = Path(__file__).parents[2] / ".cache"
+        self.onnx_folder.mkdir(parents=True, exist_ok=True)
         self.onnx_filename = "onnx/model_quantized.onnx"
         self.onnx_path = self.onnx_folder / self.onnx_filename
         if not self.onnx_path.exists():
