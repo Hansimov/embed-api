@@ -1,6 +1,5 @@
 import argparse
 import markdown2
-import os
 import sys
 import uvicorn
 

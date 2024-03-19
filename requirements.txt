@@ -1,3 +1,7 @@
+fastapi
+markdown2
 numpy
+pydantic
 tclogger
 transformers
+uvicorn
