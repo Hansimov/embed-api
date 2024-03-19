@@ -41,7 +41,7 @@ class EmbeddingApp:
         )
         return readme_html
 
-    class EncodePostItem(BaseModel):
+    class CalcEmbeddingPostItem(BaseModel):
         text: Union[str, list[str]] = Field(
             default=None,
             summary="Input text(s) to embed",
@@ -51,7 +51,7 @@ class EmbeddingApp:
             summary="Embedding model name",
         )
 
-    def encode(self, item: EncodePostItem):
+    def calc_embedding(self, item: CalcEmbeddingPostItem):
         logger.note(f"> Encoding text: [{item.text}]", end=" ")
         if item.model != self.embedder.model:
             self.embedder.switch_model(item.model)
@@ -69,13 +69,13 @@ class EmbeddingApp:
         )(self.get_available_models)
 
         self.app.post(
-            "/encode",
-            summary="Encode embedding for input text",
-        )(self.encode)
+            "/embedding",
+            summary="Calculate embedding for input text(s)",
+        )(self.calc_embedding)
 
         self.app.get(
             "/readme",
-            summary="README of HF LLM API",
+            summary="README of Embed API",
             response_class=HTMLResponse,
             include_in_schema=False,
         )(self.get_readme)
@@ -90,14 +90,14 @@ class ArgParser(argparse.ArgumentParser):
             "--server",
             type=str,
             default=ENVER["server"],
-            help=f"Server IP ({ENVER['server']}) for Embedding API",
+            help=f"Server IP ({ENVER['server']}) for Embed API",
         )
         self.add_argument(
             "-p",
             "--port",
             type=int,
             default=ENVER["port"],
-            help=f"Server Port ({ENVER['port']}) for Embedding API",
+            help=f"Server Port ({ENVER['port']}) for Embed API",
         )
 
         self.args = self.parse_args(sys.argv[1:])

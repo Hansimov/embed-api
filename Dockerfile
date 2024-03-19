@@ -5,4 +5,4 @@ RUN mkdir /.cache && chmod 777 /.cache
 RUN pip install -r requirements.txt
 COPY . $HOME/app
 EXPOSE 16666
-CMD ["python", "-m", "app"]
+CMD ["python", "-m", "apps.app"]
