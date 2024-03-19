@@ -1,6 +1,7 @@
 fastapi
 markdown2
 numpy
+onnxruntime
 pydantic
 tclogger
 torch
