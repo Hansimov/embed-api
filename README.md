@@ -1,5 +1,14 @@
+---
+title: Embed API
+emoji: 🔠
+colorFrom: gray
+colorTo: gray
+sdk: docker
+app_port: 16666
+---
+
 # embed-api
-An embedding API with open source models.
+An API to calculate embeddings for text with open-source models.
 
 ## Install
 
