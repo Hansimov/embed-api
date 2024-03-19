@@ -14,7 +14,7 @@ from tclogger import logger, OSEnver
 from transforms.embed import JinaAIEmbedder
 from configs.constants import AVAILABLE_MODELS
 
-info_path = Path(__file__).parent / "configs" / "info.json"
+info_path = Path(__file__).parents[1] / "configs" / "info.json"
 ENVER = OSEnver(info_path)
 
 
@@ -109,4 +109,4 @@ if __name__ == "__main__":
     args = ArgParser().args
     uvicorn.run("__main__:app", host=args.server, port=args.port)
 
-    # python -m app
+    # python -m apps.app
