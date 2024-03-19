@@ -3,5 +3,6 @@ markdown2
 numpy
 pydantic
 tclogger
+torch
 transformers
 uvicorn

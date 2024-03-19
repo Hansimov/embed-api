@@ -1,5 +1,5 @@
 {
-    "version": "0.1.3",
+    "version": "0.1.4",
     "app_name": "Embedding API",
     "server": "0.0.0.0",
     "port": 16666
