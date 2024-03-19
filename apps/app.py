@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field
 from fastapi.responses import HTMLResponse
 from tclogger import logger, OSEnver
 
-from transforms.embed import JinaAIEmbedder
+from transforms.embed import JinaAIEmbedder, JinaAIOnnxEmbedder
 from configs.constants import AVAILABLE_MODELS
 
 info_path = Path(__file__).parents[1] / "configs" / "info.json"
@@ -26,7 +26,7 @@ class EmbeddingApp:
             swagger_ui_parameters={"defaultModelsExpandDepth": -1},
             version=ENVER["version"],
         )
-        self.embedder = JinaAIEmbedder()
+        self.embedder = JinaAIOnnxEmbedder()
         self.setup_routes()
 
     def get_available_models(self):
@@ -53,8 +53,8 @@ class EmbeddingApp:
 
     def calc_embedding(self, item: CalcEmbeddingPostItem):
         logger.note(f"> Encoding text: [{item.text}]", end=" ")
-        if item.model != self.embedder.model:
-            self.embedder.switch_model(item.model)
+        # if item.model != self.embedder.model:
+        #     self.embedder.switch_model(item.model)
         embeddings = self.embedder.encode(item.text).tolist()
         logger.success(f"[{len(embeddings[0])}]")
         if len(embeddings) == 1:
